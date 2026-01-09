@@ -85,7 +85,7 @@ class Tree{
         // Helper Functions
         Node * current=getNodeByData(data);
         if (current == NULL){
-            return ;
+            return;
         }
         if(current == root ){
             // ROOT Only
