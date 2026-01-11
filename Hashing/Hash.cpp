@@ -138,40 +138,78 @@ public:
     }
 };
 
+// leetcode 141. Linked List Cycle
+class Solution
+{
+public:
+    bool hasCycle(Node *head)
+    {
+        Node *curr = head;
+        if (curr == NULL || curr->next == NULL)
+            return false;
+
+        HashTable ht(1000); // size of hash table
+        while (curr != NULL)
+        {
+            if (ht.search(curr->key))
+            {
+                return true;
+            }
+            ht.insert(curr->key);
+            curr = curr->next;
+        }
+        return false;
+    }
+};
+
 int main()
 {
-    HashTable ht(10); // size of hash table
-    ht.insert(10);    // 10 % 10 = 0
-    ht.insert(20);    // 20 % 10 = 0 (collision with 10)
-    ht.insert(15);    // 15 % 10 = 5
-    ht.insert(7);     // 7 % 10 = 7
-    ht.insert(32);    // 32 % 10 = 2
-    ht.insert(5);     // 5 % 10 = 5 (collision with 15)
-    ht.insert(3);     // 3 % 10 = 3
-    ht.insert(12);    // 12 % 10 = 2 (collision with 32)
-    ht.insert(17);    // 17 % 10 = 7 (collision with 7)
-    ht.insert(25);    // 25 % 10 = 5 (collision with 15 and 5)
-    ht.insert(30);    // 30 % 10 = 0 (collision with 10 and 20)
-    ht.insert(40);    // 40 % 10 = 0 (collision with 10, 20 and 30)
-
-    ht.display();
-
-    int keysToSearch[] = {15, 99, 7, 40, 100};
-    for (int key : keysToSearch)
+    Solution sol;
+    Node *head = new Node(1);
+    head->next = new Node(2);
+    head->next->next = new Node(3);
+    head->next->next->next = head->next; // create a cycle
+    if (sol.hasCycle(head))
     {
-        if (ht.search(key))
-        {
-            cout << "Key " << key << " found in hash table." << endl;
-        }
-        else
-        {
-            cout << "Key " << key << " not found in hash table." << endl;
-        }
+        cout << "Cycle detected in the linked list." << endl;
+    }
+    else
+    {
+        cout << "No cycle in the linked list." << endl;
     }
 
-    cout << "Removing key 40 from hash table." << endl;
-    ht.remove(40);
-    ht.display();
+    // HashTable ht(10); // size of hash table
+    // ht.insert(10);    // 10 % 10 = 0
+    // ht.insert(20);    // 20 % 10 = 0 (collision with 10)
+    // ht.insert(15);    // 15 % 10 = 5
+    // ht.insert(7);     // 7 % 10 = 7
+    // ht.insert(32);    // 32 % 10 = 2
+    // ht.insert(5);     // 5 % 10 = 5 (collision with 15)
+    // ht.insert(3);     // 3 % 10 = 3
+    // ht.insert(12);    // 12 % 10 = 2 (collision with 32)
+    // ht.insert(17);    // 17 % 10 = 7 (collision with 7)
+    // ht.insert(25);    // 25 % 10 = 5 (collision with 15 and 5)
+    // ht.insert(30);    // 30 % 10 = 0 (collision with 10 and 20)
+    // ht.insert(40);    // 40 % 10 = 0 (collision with 10, 20 and 30)
+
+    // ht.display();
+
+    // int keysToSearch[] = {15, 99, 7, 40, 100};
+    // for (int key : keysToSearch)
+    // {
+    //     if (ht.search(key))
+    //     {
+    //         cout << "Key " << key << " found in hash table." << endl;
+    //     }
+    //     else
+    //     {
+    //         cout << "Key " << key << " not found in hash table." << endl;
+    //     }
+    // }
+
+    // cout << "Removing key 40 from hash table." << endl;
+    // ht.remove(40);
+    // ht.display();
 
     return 0;
 }
