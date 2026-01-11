@@ -42,7 +42,8 @@ public:
 
     // insert or update
     void put(string key, string value) {
-        int index = HashFunction(key);
+        // say "name" hashes to index 3 and also "age" hashes to index 3 and user put("name", "Salma") and if i have 3: ("name", "Salma Yasser") -> NULL it will be updated to 3: ("name", "Salma") -> NULL
+        int index = HashFunction(key); 
         Node* curr = table[index];
 
         // check if key already exists -> update value
@@ -55,6 +56,8 @@ public:
         }
 
         // insert new key
+        // in case of collision, we add the new node at the beginning of the linked list 
+        // ex: put("age", "21") so now we have 3: ("age", "21") -> ("name", "Salma Yasser") -> NULL
         Node* newNode = new Node(key, value);
         newNode->next = table[index];
         table[index] = newNode;

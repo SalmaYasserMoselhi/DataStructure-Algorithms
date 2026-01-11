@@ -13,14 +13,12 @@ private:
 public:
     Queue(int capacity) {
         front = rear = -1;
-        this -> capacity = capacity;
+        this -> capacity = capacity; // 5
         items = new int[capacity];
     }
 
     bool isFull() {  // Overflow
-        if (rear == capacity - 1)
-            return true;
-        return false;
+       return rear == capacity - 1;
     }
 
     bool isEmpty() {  // Underflow
@@ -48,6 +46,9 @@ public:
             cout << "Queue is Empty" << endl;
             return;
         }
+        // front == rear  
+        //       |     
+        //       5
         else if (front == rear) { // Last Element in queue
             cout << "Last element " << items[front] << " will be dequeued" << endl;
             front = rear = -1; // Now queue is empty

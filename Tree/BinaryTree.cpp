@@ -317,6 +317,7 @@ private:
 };
 
 int main() {
+    // Node *root = new Node(50);
     BST tree;
     tree.add(50);
     tree.add(40);

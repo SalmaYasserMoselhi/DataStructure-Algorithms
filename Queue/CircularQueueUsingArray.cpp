@@ -17,8 +17,12 @@ public:
         items = new int[capacity];
     }
 
+    //       f r
+    // 0 1 2 3 4  
+    //       4 5
+
     bool isFull() {  // Overflow
-        return (front == ((rear + 1) % capacity));
+        return (front == ((rear + 1) % capacity)); // 4 + 1 % 5 == 0
     }
 
     bool isEmpty() {  // Underflow
@@ -34,7 +38,7 @@ public:
             front = rear = 0;
         }
         else {
-            rear = (rear + 1) % capacity;
+            rear = (rear + 1) % capacity; // 4 + 1 % 5 == 0 (keep it circular (in range of 0 -> size - 1))
         }
         items[rear] = value;  // Enqueue
     }
@@ -49,10 +53,16 @@ public:
             front = rear = -1; // Now queue is empty
         }
         else {
+            // f r       
+            // 0 1 2 3 4  
+            // 6 8     
             cout << "Dequeued elememnt is " << items[front] << endl; 
-            front =  (front +1) % capacity; // Dequeue
+            front =  (front +1) % capacity; // Dequeue  --> 3 + 1 % 5 == 4  --> 4 + 1 % 5 == 0
         }
     }
+    // when enqueue rear = (rear + 1) % capacity
+    // when dequeue front = (front + 1) % capacity
+    // to check full front == (rear + 1) % capacity
     
     void display() {
         if (isEmpty()) {
@@ -60,11 +70,14 @@ public:
             return;
         }
         else {
-            int i = front;
+            //   r   f          
+            // 0 1 2 3 4  
+            // 9 8   3 4
+            int i = front; // 3
             while (i != rear)
             {
-                cout << items[i] << " ";
-                i = (i + 1) % capacity;
+                cout << items[i] << " "; // items[3], items[4], items[0], items[1] 
+                i = (i + 1) % capacity; // 3 + 1 % 5 == 4  --> 4 + 1 % 5 == 0 --> 0 + 1 % 5 == 1
             }
             cout << items[i] << " "; // last element
             cout << endl;
