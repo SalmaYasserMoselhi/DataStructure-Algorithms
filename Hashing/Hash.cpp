@@ -180,8 +180,8 @@ public:
                 /*
                 Example: Remove 15 from: 0: 15 -> 5 -> 20 -> NULL
                 
-                prev  curr
-                 |     |
+                prev   curr
+                 |       |
                 NULL  0: 15 -> 5 -> 20 -> NULL
                 
                 table[0] = curr->next
@@ -256,37 +256,7 @@ public:
     }
 
     ~HashTable()
-    {
-        /*
-        Example: Destructor cleanup for index 0
-        0: 15 -> 5 -> 20 -> NULL
-        
-        Step 1: curr = table[0]
-        curr
-         |
-        15 -> 5 -> 20 -> NULL
-        
-        Step 2: temp = curr, curr = curr->next, delete temp
-        temp      curr
-         |         |
-        15 -> 5 -> 20 -> NULL
-        (delete 15)
-        
-        Step 3: temp = curr, curr = curr->next, delete temp
-              temp  curr
-               |     |
-        5 -> 20 -> NULL
-        (delete 5)
-        
-        Step 4: temp = curr, curr = curr->next, delete temp
-                    temp  curr
-                     |     |
-        20 -> NULL
-        (delete 20)
-        
-        Step 5: curr == NULL, exit loop
-        */
-        
+    {   
         for (int i = 0; i < size; i++)
         {
             Node *curr = table[i]; // get pointer to first node in linked list for the index i
