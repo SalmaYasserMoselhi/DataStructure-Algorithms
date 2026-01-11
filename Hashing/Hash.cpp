@@ -57,6 +57,10 @@ public:
         data = 15 -> index = 0
         Result:
         0: 15 -> 5 -> NULL
+        1: 1 -> NULL
+        2: NULL
+        3: NULL
+        4: NULL
         */
         return index;
     }
