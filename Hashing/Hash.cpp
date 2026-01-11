@@ -142,23 +142,23 @@ public:
         Step 1: curr->key = 15, not equal to 20
                 prev = curr, curr = curr->next
                 
-               prev  curr
-                 |     |
+            prev  curr
+            |     |
         0: 15 -> 5 -> 20 -> 25 -> NULL
         
         Step 2: curr->key = 5, not equal to 20
                 prev = curr, curr = curr->next
                 
-                      prev  curr
-                       |     |
+                prev  curr
+                |     |
         0: 15 -> 5 -> 20 -> 25 -> NULL
         
         Step 3: curr->key = 20, equal to 20 (found!)
                 prev is NOT NULL (Case 2)
                 prev->next = curr->next
                 
-                      prev        curr
-                       |           |
+                      prev        curr -> 20 (will be deleted)
+                       |           
         0: 15 -> 5 ------------> 25 -> NULL
                   (skips 20)
         
